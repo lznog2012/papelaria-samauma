@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recortável — Materiais didáticos para imprimir e recortar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F7F3E8;
+    --paper-2:#EFE8D6;
+    --ink:#1F2A24;
+    --pine:#3C5C4E;
+    --sage:#4C7A6B;
+    --mustard:#E3A23D;
+    --tomato:#C1443C;
+    --kraft:#B9AE93;
+    --white:#FFFDF7;
+    --radius: 14px;
+    --max: 1160px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+  h1,h2,h3{
+    font-family:'Bricolage Grotesque', sans-serif;
+    font-weight:800;
+    letter-spacing:-0.01em;
+    line-height:1.05;
+  }
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    color:var(--sage);
+    font-weight:700;
+  }
+  .price{font-family:'Space Mono', monospace;}
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:600;
+    font-size:15px;
+    padding:13px 24px;
+    border-radius:999px;
+    border:2px solid var(--ink);
+    cursor:pointer;
+    text-decoration:none;
+    transition:transform .15s ease, background .15s ease, color .15s ease;
+    background:none;
+  }
+  .btn-primary{background:var(--ink); color:var(--paper);}
+  .btn-primary:hover{transform:translateY(-2px); background:var(--pine);}
+  .btn-ghost{color:var(--ink);}
+  .btn-ghost:hover{transform:translateY(-2px); background:var(--ink); color:var(--paper);}
+  .btn-small{padding:9px 16px; font-size:13.5px;}
+
+  /* dashed cut-line, literal product motif */
+  .cutline{
+    position:relative;
+    border-top:2px dashed var(--kraft);
+  }
+  .cutline::before{
+    content:"✂";
+    position:absolute;
+    left:-4px; top:-13px;
+    font-size:16px;
+    color:var(--kraft);
+    background:var(--paper);
+    padding:0 4px;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(247,243,232,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--paper-2);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 0;
+  }
+  .logo{
+    font-family:'Bricolage Grotesque', sans-serif;
+    font-weight:800;
+    font-size:21px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo .dot{color:var(--tomato);}
+  .nav-links{
+    display:flex; gap:32px; align-items:center;
+    font-size:14.5px; font-weight:500;
+    list-style:none;
+  }
+  .nav-links a{text-decoration:none; opacity:0.8; transition:opacity .15s;}
+  .nav-links a:hover{opacity:1;}
+  .nav-cta{display:flex; gap:12px; align-items:center;}
+  .menu-toggle{display:none; background:none; border:none; font-size:24px; cursor:pointer; color:var(--ink);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:76px 0 60px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(38px, 5.4vw, 60px);
+    margin:16px 0 20px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--tomato);
+    text-decoration:underline;
+    text-decoration-style:wavy;
+    text-decoration-color:var(--mustard);
+    text-underline-offset:6px;
+  }
+  .hero p.lead{
+    font-size:18px;
+    max-width:460px;
+    color:#3d453f;
+    margin-bottom:30px;
+  }
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:28px;}
+  .hero-trust{
+    display:flex; gap:22px; font-size:13.5px; color:#5a6259; flex-wrap:wrap;
+  }
+  .hero-trust span{display:flex; align-items:center; gap:6px;}
+
+  /* hero illustration: tilted "sheet" with dashed cut lines and floating cutout shapes */
+  .hero-art{
+    position:relative;
+    height:440px;
+  }
+  .sheet{
+    position:absolute;
+    top:10%; left:12%;
+    width:78%; height:80%;
+    background:var(--white);
+    border-radius:6px;
+    box-shadow:0 30px 60px -20px rgba(31,42,36,0.35);
+    transform:rotate(-4deg);
+    padding:26px;
+    border:1px solid #e9e2cf;
+  }
+  .sheet .row{
+    height:10px;
+    background:var(--paper-2);
+    border-radius:3px;
+    margin-bottom:14px;
+    width:100%;
+  }
+  .sheet .row.short{width:60%;}
+  .sheet .cut-h{
+    border-top:2px dashed var(--kraft);
+    margin:20px 0;
+    position:relative;
+  }
+  .sheet .cut-h::after{
+    content:"✂";
+    position:absolute; right:0; top:-12px;
+    font-size:14px; color:var(--kraft);
+    background:var(--white); padding:0 4px;
+  }
+  .float-shape{
+    position:absolute;
+    border-radius:10px;
+    box-shadow:0 14px 28px -10px rgba(31,42,36,0.3);
+  }
+  .shape-1{
+    width:96px; height:70px; background:var(--mustard);
+    top:2%; right:2%;
+    transform:rotate(9deg);
+    border-radius:8px 8px 8px 26px;
+  }
+  .shape-2{
+    width:78px; height:78px; background:var(--sage);
+    bottom:6%; left:0%;
+    transform:rotate(-12deg);
+    border-radius:50%;
+  }
+  .shape-3{
+    width:64px; height:64px; background:var(--tomato);
+    bottom:-2%; right:14%;
+    transform:rotate(14deg);
+    border-radius:8px;
+  }
+
+  /* ---------- MARQUEE / STRIP ---------- */
+  .strip{
+    background:var(--ink);
+    color:var(--paper);
+    padding:12px 0;
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  .strip-inner{
+    display:inline-flex;
+    gap:40px;
+    animation:scroll 26s linear infinite;
+    font-family:'Space Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.04em;
+  }
+  .strip-inner span{opacity:0.85;}
+  @keyframes scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ---------- SECTION HEADS ---------- */
+  section{padding:88px 0;}
+  .sec-head{
+    max-width:560px;
+    margin-bottom:48px;
+  }
+  .sec-head h2{
+    font-size:clamp(28px, 3.6vw, 40px);
+    margin-top:10px;
+  }
+  .sec-head p{color:#4a524c; font-size:16.5px; margin-top:12px;}
+
+  /* ---------- HOW IT WORKS ---------- */
+  .how{background:var(--paper-2);}
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:0;
+    border:1px solid var(--kraft);
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:var(--white);
+  }
+  .step{
+    padding:34px 30px;
+    position:relative;
+  }
+  .step:not(:last-child){border-right:2px dashed var(--kraft);}
+  .step-icon{
+    width:46px; height:46px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:22px;
+    background:var(--paper);
+    border-radius:50%;
+    margin-bottom:18px;
+  }
+  .step h3{font-size:19px; margin-bottom:8px;}
+  .step p{font-size:14.5px; color:#54594f;}
+
+  /* ---------- PRODUCTS ---------- */
+  .products-head{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap;
+  }
+  .filters{display:flex; gap:10px; flex-wrap:wrap;}
+  .chip{
+    font-family:'Space Mono', monospace;
+    font-size:12.5px;
+    padding:7px 14px;
+    border-radius:999px;
+    border:1px solid var(--kraft);
+    background:var(--white);
+    cursor:pointer;
+  }
+  .chip.active{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+
+  .product-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:26px;
+    margin-top:40px;
+  }
+  .card{
+    background:var(--white);
+    border:1px solid #e9e2cf;
+    border-radius:var(--radius);
+    overflow:hidden;
+    display:flex; flex-direction:column;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .card:hover{transform:translateY(-5px); box-shadow:0 20px 34px -18px rgba(31,42,36,0.28);}
+  .card-thumb{
+    aspect-ratio:4/3;
+    background:var(--pv, var(--paper-2));
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .card-thumb .tag{
+    position:absolute; top:12px; left:12px;
+    background:var(--white);
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    padding:4px 9px;
+    border-radius:999px;
+    border:1px solid var(--kraft);
+  }
+  .card-thumb .pages{
+    position:absolute; bottom:12px; right:12px;
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    color:rgba(31,42,36,0.6);
+    background:rgba(255,253,247,0.85);
+    padding:3px 8px;
+    border-radius:6px;
+  }
+  .thumb-icon{font-size:48px;}
+  .card-body{padding:18px 18px 20px; display:flex; flex-direction:column; gap:10px; flex:1;}
+  .card-body h3{font-size:17px; font-weight:700; font-family:'IBM Plex Sans',sans-serif;}
+  .card-body p{font-size:13.5px; color:#5a6259; flex:1;}
+  .card-foot{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-top:6px;
+    padding-top:12px;
+    border-top:2px dashed var(--kraft);
+  }
+  .card-foot .price{font-size:18px; font-weight:700; color:var(--tomato);}
+
+  /* ---------- WHY / FEATURES ---------- */
+  .why{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+  }
+  .why-list{list-style:none; display:flex; flex-direction:column; gap:22px; margin-top:28px;}
+  .why-list li{display:flex; gap:16px; align-items:flex-start;}
+  .why-list .ico{
+    flex:none;
+    width:38px; height:38px;
+    border-radius:10px;
+    background:var(--mustard);
+    display:flex; align-items:center; justify-content:center;
+    font-size:17px;
+  }
+  .why-list h4{font-size:16px; margin-bottom:4px;}
+  .why-list p{font-size:14px; color:#54594f;}
+
+  .receipt{
+    background:var(--white);
+    border:1px solid #e9e2cf;
+    border-radius:10px;
+    padding:30px 26px;
+    max-width:340px;
+    margin:0 auto;
+    box-shadow:0 20px 45px -22px rgba(31,42,36,0.35);
+    transform:rotate(1.5deg);
+  }
+  .receipt-top{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--sage);
+    border-bottom:2px dashed var(--kraft);
+    padding-bottom:14px;
+    margin-bottom:14px;
+  }
+  .receipt-row{display:flex; justify-content:space-between; font-size:13.5px; padding:6px 0;}
+  .receipt-row.total{
+    border-top:2px dashed var(--kraft);
+    margin-top:8px; padding-top:12px;
+    font-weight:700; font-family:'Space Mono', monospace;
+  }
+  .receipt-stamp{
+    margin-top:16px;
+    text-align:center;
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    color:var(--tomato);
+    border:2px solid var(--tomato);
+    border-radius:6px;
+    padding:6px;
+    transform:rotate(-2deg);
+  }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonials{background:var(--ink); color:var(--paper);}
+  .testimonials .sec-head p{color:#c9d1c9;}
+  .testimonials .eyebrow{color:var(--mustard);}
+  .t-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+  .t-card{
+    background:#293530;
+    border-radius:var(--radius);
+    padding:26px;
+    display:flex; flex-direction:column; gap:16px;
+  }
+  .t-card .stars{color:var(--mustard); font-size:14px; letter-spacing:2px;}
+  .t-card p{font-size:14.5px; color:#dbe2db; flex:1;}
+  .t-who{display:flex; align-items:center; gap:10px;}
+  .t-avatar{
+    width:36px; height:36px; border-radius:50%;
+    background:var(--sage);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Mono', monospace; font-size:13px; font-weight:700;
+  }
+  .t-who .name{font-size:13.5px; font-weight:600;}
+  .t-who .role{font-size:12px; color:#9aa79e;}
+
+  /* ---------- FAQ ---------- */
+  .faq-list{
+    display:flex; flex-direction:column;
+    border-top:1px solid var(--kraft);
+  }
+  .faq-item{border-bottom:1px solid var(--kraft);}
+  .faq-q{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:22px 4px;
+    cursor:pointer;
+    font-weight:600; font-size:16px;
+  }
+  .faq-q .plus{font-family:'Space Mono', monospace; font-size:20px; transition:transform .2s;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{
+    max-height:0; overflow:hidden;
+    transition:max-height .25s ease;
+    font-size:14.5px; color:#4a524c;
+  }
+  .faq-item.open .faq-a{max-height:200px; padding-bottom:22px;}
+
+  /* ---------- CTA ---------- */
+  .cta-section{
+    background:var(--sage);
+    color:var(--white);
+    border-radius:24px;
+    margin:0 auto;
+    max-width:var(--max);
+    padding:64px 48px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-section h2{font-size:clamp(28px,4vw,42px); margin-bottom:14px;}
+  .cta-section p{font-size:16.5px; opacity:0.92; max-width:480px; margin:0 auto 30px;}
+  .cta-section .btn-primary{background:var(--white); color:var(--ink); border-color:var(--white);}
+  .cta-section .btn-primary:hover{background:var(--mustard); border-color:var(--mustard); color:var(--ink);}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:64px 0 32px;}
+  .foot-top{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr 1fr;
+    gap:32px;
+    padding-bottom:40px;
+    border-bottom:1px solid var(--paper-2);
+  }
+  .foot-col h4{font-size:13px; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:16px; font-family:'Space Mono', monospace; color:var(--sage);}
+  .foot-col ul{list-style:none; display:flex; flex-direction:column; gap:10px;}
+  .foot-col a{text-decoration:none; font-size:14.5px; color:#4a524c;}
+  .foot-col a:hover{color:var(--ink);}
+  .foot-brand p{font-size:14px; color:#5a6259; max-width:260px; margin-top:12px;}
+  .foot-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:24px;
+    font-size:13px; color:#7a8177;
+    flex-wrap:wrap; gap:12px;
+  }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    .strip-inner{animation:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:920px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-art{height:340px; order:-1;}
+    .why{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr;}
+    .step:not(:last-child){border-right:none; border-bottom:2px dashed var(--kraft);}
+    .product-grid{grid-template-columns:repeat(2,1fr);}
+    .t-grid{grid-template-columns:1fr;}
+    .foot-top{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:640px){
+    .nav-links{display:none;}
+    .menu-toggle{display:block;}
+    .product-grid{grid-template-columns:1fr;}
+    .cta-section{padding:48px 26px; border-radius:16px;}
+    .foot-top{grid-template-columns:1fr;}
+    section{padding:64px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo"><span>Recortável</span><span class="dot">.</span></div>
+    <ul class="nav-links">
+      <li><a href="#produtos">Produtos</a></li>
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+      <li><a href="#faq">Dúvidas</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#produtos" class="btn btn-primary btn-small">Ver materiais</a>
+    </div>
+    <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="reveal in">
+      <p class="eyebrow">Material didático em PDF</p>
+      <h1>Imprima hoje, <em>recorte</em> em cinco minutos.</h1>
+      <p class="lead">Fichas, jogos e atividades prontos em PDF de alta resolução. Compre, baixe na hora e imprima em casa ou na escola — sem frete, sem espera.</p>
+      <div class="hero-actions">
+        <a href="#produtos" class="btn btn-primary">Ver todos os materiais</a>
+        <a href="#como-funciona" class="btn btn-ghost">Como funciona</a>
+      </div>
+      <div class="hero-trust">
+        <span>📥 Download imediato</span>
+        <span>🖨️ Pronto para impressora doméstica</span>
+        <span>✂️ Corte fácil, sem sobras</span>
+      </div>
+    </div>
+    <div class="hero-art reveal in">
+      <div class="float-shape shape-2"></div>
+      <div class="sheet">
+        <div class="row" style="width:40%;"></div>
+        <div class="row short"></div>
+        <div class="cut-h"></div>
+        <div class="row" style="width:80%;"></div>
+        <div class="row"></div>
+        <div class="cut-h"></div>
+        <div class="row short"></div>
+        <div class="row" style="width:70%;"></div>
+      </div>
+      <div class="float-shape shape-1"></div>
+      <div class="float-shape shape-3"></div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-inner" id="strip">
+    <span>✂ DOWNLOAD IMEDIATO</span><span>✂ ARQUIVO EM ALTA RESOLUÇÃO</span><span>✂ PRONTO PARA IMPRIMIR EM CASA</span><span>✂ NOVOS MATERIAIS TODO MÊS</span>
+  </div>
+</div>
+
+<section class="how" id="como-funciona">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Como funciona</p>
+      <h2>Da compra à tesoura em três passos</h2>
+      <p>Sem cadastro complicado, sem espera pelo correio.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-icon">🛒</div>
+        <h3>1. Escolha e compre</h3>
+        <p>Selecione o material, pague com Pix ou cartão e pronto — sem assinatura, é compra única.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">📥</div>
+        <h3>2. Baixe o PDF</h3>
+        <p>O link de download chega na hora no seu e-mail, em alta resolução para impressão nítida.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">✂️</div>
+        <h3>3. Imprima e recorte</h3>
+        <p>Use sua impressora, siga as linhas tracejadas e monte o material em minutos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="produtos">
+  <div class="wrap">
+    <div class="products-head sec-head reveal" style="max-width:none;">
+      <div>
+        <p class="eyebrow">Catálogo</p>
+        <h2>Materiais prontos para imprimir</h2>
+      </div>
+      <div class="filters">
+        <button class="chip active">Todos</button>
+        <button class="chip">Alfabetização</button>
+        <button class="chip">Matemática</button>
+        <button class="chip">Jogos</button>
+      </div>
+    </div>
+
+    <div class="product-grid reveal">
+      <div class="card">
+        <div class="card-thumb" style="--pv:#EAD9A9;">
+          <span class="tag">Alfabetização</span>
+          <span class="thumb-icon">🔤</span>
+          <span class="pages">18 págs</span>
+        </div>
+        <div class="card-body">
+          <h3>Alfabeto Móvel Ilustrado</h3>
+          <p>26 letras em cartões grandes, com ilustração e linha de corte guiada.</p>
+          <div class="card-foot">
+            <span class="price">R$ 14,90</span>
+            <a href="#" class="btn btn-ghost btn-small">Comprar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-thumb" style="--pv:#D9E3D6;">
+          <span class="tag">Matemática</span>
+          <span class="thumb-icon">🔢</span>
+          <span class="pages">12 págs</span>
+        </div>
+        <div class="card-body">
+          <h3>Fichas de Contagem 1–20</h3>
+          <p>Cartões numéricos com desenhos para contar, recortar e associar quantidade.</p>
+          <div class="card-foot">
+            <span class="price">R$ 12,90</span>
+            <a href="#" class="btn btn-ghost btn-small">Comprar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-thumb" style="--pv:#F0D3CE;">
+          <span class="tag">Jogos</span>
+          <span class="thumb-icon">🎲</span>
+          <span class="pages">9 págs</span>
+        </div>
+        <div class="card-body">
+          <h3>Jogo da Memória — Bichos</h3>
+          <p>24 peças para recortar e plastificar, com 12 pares de animais.</p>
+          <div class="card-foot">
+            <span class="price">R$ 9,90</span>
+            <a href="#" class="btn btn-ghost btn-small">Comprar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-thumb" style="--pv:#E6D6EA;">
+          <span class="tag">Alfabetização</span>
+          <span class="thumb-icon">✏️</span>
+          <span class="pages">15 págs</span>
+        </div>
+        <div class="card-body">
+          <h3>Sílabas para Montar Palavras</h3>
+          <p>Peças de sílabas coloridas para formar palavras do cotidiano.</p>
+          <div class="card-foot">
+            <span class="price">R$ 13,90</span>
+            <a href="#" class="btn btn-ghost btn-small">Comprar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-thumb" style="--pv:#D7E6EA;">
+          <span class="tag">Matemática</span>
+          <span class="thumb-icon">📐</span>
+          <span class="pages">10 págs</span>
+        </div>
+        <div class="card-body">
+          <h3>Formas Geométricas 3D</h3>
+          <p>Moldes para montar cubo, pirâmide e prisma, com linhas de dobra e corte.</p>
+          <div class="card-foot">
+            <span class="price">R$ 11,90</span>
+            <a href="#" class="btn btn-ghost btn-small">Comprar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-thumb" style="--pv:#EFE0C7;">
+          <span class="tag">Jogos</span>
+          <span class="thumb-icon">🃏</span>
+          <span class="pages">14 págs</span>
+        </div>
+        <div class="card-body">
+          <h3>Bingo das Letras</h3>
+          <p>6 cartelas + fichas para recortar, ideal para turmas pequenas.</p>
+          <div class="card-foot">
+            <span class="price">R$ 15,90</span>
+            <a href="#" class="btn btn-ghost btn-small">Comprar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap why">
+    <div class="reveal">
+      <p class="eyebrow">Por que Recortável</p>
+      <h2>Feito para ser impresso, não só bonito na tela</h2>
+      <ul class="why-list">
+        <li>
+          <div class="ico">🖨️</div>
+          <div><h4>Testado em impressora doméstica</h4><p>Sem sangria perdida, sem cores que estouram tinta — cada arquivo é revisado antes de ir ao catálogo.</p></div>
+        </li>
+        <li>
+          <div class="ico">✂️</div>
+          <div><h4>Linhas de corte pensadas de verdade</h4><p>Guias tracejadas e margens de segurança para recortar sem perder pedaço de atividade.</p></div>
+        </li>
+        <li>
+          <div class="ico">⚡</div>
+          <div><h4>Acesso na hora</h4><p>O download libera assim que o pagamento é aprovado — dá para imprimir ainda hoje.</p></div>
+        </li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <div class="receipt">
+        <div class="receipt-top">Recortável · Pedido</div>
+        <div class="receipt-row"><span>Alfabeto Móvel Ilustrado</span><span>R$ 14,90</span></div>
+        <div class="receipt-row"><span>Fichas de Contagem 1–20</span><span>R$ 12,90</span></div>
+        <div class="receipt-row"><span>Jogo da Memória — Bichos</span><span>R$ 9,90</span></div>
+        <div class="receipt-row total"><span>Total</span><span>R$ 37,70</span></div>
+        <div class="receipt-stamp">✓ LIBERADO PARA DOWNLOAD</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="depoimentos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Quem já imprimiu</p>
+      <h2>Professoras e pais recomendam</h2>
+    </div>
+    <div class="t-grid reveal">
+      <div class="t-card">
+        <div class="stars">★★★★★</div>
+        <p>"Imprimi na hora do intervalo e usei na aula seguinte. As linhas de corte facilitam demais na hora de recortar com os pequenos."</p>
+        <div class="t-who">
+          <div class="t-avatar">MC</div>
+          <div><div class="name">Marina Castro</div><div class="role">Professora, Educação Infantil</div></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="stars">★★★★★</div>
+        <p>"Uso os jogos de matemática toda semana. O arquivo vem bem organizado, dá pra imprimir só o que precisa daquele dia."</p>
+        <div class="t-who">
+          <div class="t-avatar">JP</div>
+          <div><div class="name">João Pereira</div><div class="role">Pai e educador domiciliar</div></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="stars">★★★★★</div>
+        <p>"Comprei três materiais de uma vez e o download já veio tudo junto. Economizei um bom tempo de preparo de aula."</p>
+        <div class="t-who">
+          <div class="t-avatar">RS</div>
+          <div><div class="name">Renata Souza</div><div class="role">Coordenadora pedagógica</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Dúvidas frequentes</p>
+      <h2>Antes de imprimir</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <div class="faq-q"><span>Em que formato o material chega?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Todos os materiais são entregues em PDF de alta resolução, prontos para impressão em folha A4 ou Carta.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Posso imprimir mais de uma vez?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Sim. Depois da compra o arquivo é seu — imprima quantas vezes precisar, para o seu uso próprio ou da sua turma.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Preciso de papel ou impressora especial?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Não. Os arquivos são otimizados para impressora doméstica comum e papel sulfite. Papel mais grosso é recomendado, mas não obrigatório.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Como recebo o link de download?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Assim que o pagamento é aprovado, o link chega no seu e-mail e também fica disponível na sua área de compras.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="cta-section reveal">
+    <h2>Pronto pra imprimir a próxima aula?</h2>
+    <p>Escolha um material, baixe em segundos e comece a recortar ainda hoje.</p>
+    <a href="#produtos" class="btn btn-primary">Ver catálogo completo</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-col foot-brand">
+        <div class="logo"><span>Recortável</span><span class="dot">.</span></div>
+        <p>Materiais didáticos em PDF para imprimir, recortar e usar na hora.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Catálogo</h4>
+        <ul>
+          <li><a href="#produtos">Alfabetização</a></li>
+          <li><a href="#produtos">Matemática</a></li>
+          <li><a href="#produtos">Jogos</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Ajuda</h4>
+        <ul>
+          <li><a href="#faq">Dúvidas frequentes</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#">Fale conosco</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="mailto:contato@recortavel.com.br">contato@recortavel.com.br</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Recortável. Todos os direitos reservados.</span>
+      <span>Feito para quem gosta de imprimir e recortar.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>io.observe(el));
+
+  // duplicate strip content for seamless marquee
+  const strip = document.getElementById('strip');
+  strip.innerHTML += strip.innerHTML;
+
+  // faq accordion
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.querySelector('.faq-q').addEventListener('click', ()=>{
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+      if(!isOpen) item.classList.add('open');
+    });
+  });
+
+  // filter chips (visual only placeholder)
+  document.querySelectorAll('.chip').forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+    });
+  });
+
+  // mobile menu toggle -> simple show/hide of nav links
+  const toggle = document.querySelector('.menu-toggle');
+  const links = document.querySelector('.nav-links');
+  toggle.addEventListener('click', ()=>{
+    const shown = links.style.display === 'flex';
+    links.style.display = shown ? 'none' : 'flex';
+    links.style.cssText += shown ? '' : 'position:absolute; top:64px; left:0; right:0; background:var(--paper); flex-direction:column; padding:20px 28px; border-bottom:1px solid var(--paper-2);';
+  });
+</script>
+
+</body>
+</html>
